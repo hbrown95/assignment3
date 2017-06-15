@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Store</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <script src = "https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+<body class="<%= controller.controller_name %>">
+
+  <div id="banner">
+    <%= image_tag("logo.png", size: "80x40") %>
+    <%= @page_title || "Our Products" %>
+  </div>
+
+<div id="columns">
+  <div id="side">
+  <div id="cart">          
+  	<% if @cart %>
+       	<%= render @cart %>
+   <% end %>      
+  </div>
+  <ul>
+    <li><a href="http://www....">Home</a></li>
+    <li><a href="http://www..../faq">Questions</a></li>
+    <li><a href="http://www..../news">News</a></li>
+    <li><a href="http://www..../contact">Contact</a></li>
+  </ul>
+  </div>
+
+  <% if current_user %>
+  	Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+  <% else %>
+  	<%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+  <% end %>
+
+<div id="main">
+  <%= yield %>
+</div>
+</div>
+
+</body>
+</html>
